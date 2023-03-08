@@ -14,7 +14,7 @@ from xlutils import copy
 
 
 # General util function to get the boundary of a binary mask.
-# 该函数用于获取二进制 mask 的边界
+
 def mask_to_boundary(mask, dilation_ratio=0.001):
     """
     Convert binary mask to boundary mask.
@@ -23,7 +23,7 @@ def mask_to_boundary(mask, dilation_ratio=0.001):
     :return: boundary mask (numpy array)
     """
     h, w = mask.shape
-    img_diag = np.sqrt(h ** 2 + w ** 2)  # 计算图像对角线长度
+    img_diag = np.sqrt(h ** 2 + w ** 2)  # cal diag length
     dilation = int(round(dilation_ratio * img_diag))
     if dilation < 1:
         dilation = 1
@@ -34,7 +34,7 @@ def mask_to_boundary(mask, dilation_ratio=0.001):
     kernel = np.ones((3, 3), dtype=np.uint8)
     new_mask_erode = cv2.erode(new_mask, kernel, iterations=dilation)
 
-    # 因为之前向四周填充了0, 故而这里不再需要四周
+
     mask_erode = new_mask_erode[1: h + 1, 1: w + 1]
 
     # G_d intersects G in the paper.

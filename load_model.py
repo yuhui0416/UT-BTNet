@@ -59,7 +59,7 @@ def get_parser():
 
     args = parser.parse_args()
     config_path = 'config/%s/%s_%s_%s.yaml' % (args.dataset, args.model,'bd', 'top')
-    # config_path = 'config/%s/%s_%s_%s.yaml'%(args.dataset, args.model, 'cornary', 'top')        #换模型后换配置文件
+    # config_path = 'config/%s/%s_%s_%s.yaml'%(args.dataset, args.model, 'cornary', 'top')
     if not os.path.exists(config_path):
         raise ValueError("The specified configuration doesn't exist: %s" % config_path)
 

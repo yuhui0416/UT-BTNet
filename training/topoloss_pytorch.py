@@ -33,11 +33,7 @@ def compute_dgm_force(lh_dgm, gt_dgm, pers_thresh=0.03, pers_thresh_perfect=0.99
         process
 
     """
-    # print('持续同源性')
-    # print(lh_dgm.shape)
-    # print(lh_dgm[:])
-    # print(lh_dgm[:, 1])
-    #加入边缘检测原则。
+
 
     # if len(lh_dgm.shape) != 2:
     #     return [], [], []
@@ -169,7 +165,7 @@ def getTopoLoss(likelihood_tensor, gt_tensor, t ):
     topo_cp_weight_map = np.zeros(likelihood.shape)
     topo_cp_ref_map = np.zeros(likelihood.shape)
 
-    #修改，针对多patch_size的做法
+
     for frame in range(0, likelihood.shape[0]):
         # topo_cp_weight_map_patch = []
         # topo_cp_ref_map_patch = []

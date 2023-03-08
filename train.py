@@ -103,7 +103,7 @@ def train_net(net, args, ema_net=None, fold_idx=0):
             else:
                 # loss = criterion(result, label.squeeze(1)) + criterion_dl(result, label)
                 # _, pre = result.max(dim=1)
-                if epoch <= 200:
+                if epoch <= 20:
                     gt_sdf = compute_sdf(label, label.shape)
                     pre = F.softmax(result, dim=1)
                     # pre = pre[:, 1, :, :]
@@ -118,7 +118,7 @@ def train_net(net, args, ema_net=None, fold_idx=0):
                     bd_loss = boundary_loss(pre, gt_sdf)
                     # pre, _ = torch.max(pre, dim=1)
 
-                    loss = criterion(result, label.squeeze(1)) + criterion_dl(result, label) + bd_loss + 0.05*getTopoLoss(pre_top, label, 512)
+                    loss = criterion(result, label.squeeze(1)) + criterion_dl(result, label) + bd_loss + 0.1*getTopoLoss(pre_top, label, 512)
                     # loss = criterion(result, label.squeeze(1)) + criterion_dl(result,
                     #                                                           label)  + 0.1 * getTopoLoss(
                     #     pre_top, label, 512)

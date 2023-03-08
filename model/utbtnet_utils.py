@@ -41,7 +41,7 @@ class BidirectionAttention(nn.Module):
         
         B, C, H, W = feat.shape     #patch, c, h, w
         
-        feat_q, feat_v = self.feat_qv(feat).chunk(2, dim=1) # B, inner_dim, H, W    (关注一下尺寸)
+        feat_q, feat_v = self.feat_qv(feat).chunk(2, dim=1) # B, inner_dim, H, W
         map_q, map_v = self.map_qv(semantic_map).chunk(2, dim=1) # B, inner_dim, rs, rs
 
         feat_q, feat_v = map(lambda t: rearrange(t, 'b (dim_head heads) h w -> b heads (h w) dim_head', dim_head = self.dim_head, heads=self.heads, h=H, w=W), [feat_q, feat_v])

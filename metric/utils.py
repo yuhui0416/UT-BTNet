@@ -79,7 +79,7 @@ def calculate_dice(pred, target, C):
     return dice, intersection, summ
 
 
-# 测试代码test
+# test
 def calculate_score(pred, target, C):
     # pred and target are torch tensor
     N = pred.shape[0]
